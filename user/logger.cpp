@@ -9,8 +9,8 @@ SickoLogger Log;
 void SickoLogger::Create()
 {
 	const auto path = getModulePath(NULL);
-	const auto logPath = path.parent_path() / "sicko-log.txt";
-	const auto prevLogPath = path.parent_path() / "sicko-prev-log.txt";
+	const auto logPath = path.parent_path() / "hyper-log.txt";
+	const auto prevLogPath = path.parent_path() / "hyper-prev-log.txt";
 
 	std::error_code errCode;
 	std::filesystem::remove(prevLogPath, errCode);
@@ -58,15 +58,15 @@ void SickoLogger::Info(std::string_view source, std::string_view message)
 
 void SickoLogger::Debug(std::string_view message)
 {
-	Debug("SICKO", message);
+	Debug("HYPER", message);
 }
 
 void SickoLogger::Error(std::string_view message)
 {
-	Error("SICKO", message);
+	Error("HYPER", message);
 }
 
 void SickoLogger::Info(std::string_view message)
 {
-	Info("SICKO", message);
+	Info("HYPER", message);
 }

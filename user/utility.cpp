@@ -1430,7 +1430,7 @@ float GetDistanceBetweenPoints_ImGui(const ImVec2& p1, const ImVec2& p2)
 
 void ShowHudNotification(std::string text) {
     return;
-    std::string notificationText = "</size><#fb0>[<#ff006c>SickoMenu</color>]</color> " + text + "<size=0>";
+    std::string notificationText = "</size><#fb0>[<#ff006c>HyperMenu</color>]</color> " + text + "<size=0>";
     if (IsInGame() || IsInLobby())
         NotificationPopper_AddDisconnectMessage((NotificationPopper*)(Game::HudManager.GetInstance()->fields.Notifier), convert_to_string(text), NULL);
 }
@@ -1744,7 +1744,7 @@ std::vector<std::string> GetAllConfigs() {
     std::vector<std::string> files;
 
     auto path = getModulePath(hModule);
-    auto configsPath = path.parent_path() / "sicko-config";
+    auto configsPath = path.parent_path() / "hyper-config";
 
     for (const auto& f : std::filesystem::directory_iterator(configsPath)) {
         if (std::filesystem::is_regular_file(f) && f.path().extension() == ".json") {
@@ -1757,7 +1757,7 @@ std::vector<std::string> GetAllConfigs() {
 
 bool CheckConfigExists(std::string configName) {
     auto path = getModulePath(hModule);
-    auto settingsPath = path.parent_path() / std::format("sicko-config/{}.json", State.selectedConfig);
+    auto settingsPath = path.parent_path() / std::format("hyper-config/{}.json", State.selectedConfig);
     return std::filesystem::exists(settingsPath);
 }
 
@@ -1790,7 +1790,7 @@ void SMAC_OnCheatDetected(PlayerControl* pCtrl, std::string reason) {
     if (IsHost()) {
         switch (State.SMAC_HostPunishment) {
         case 0:
-            LOG_INFO((name + " has been detected by SickoMenu Anticheat! Reason: " + reason).c_str());
+            LOG_INFO((name + " has been detected by HyperMenu Anticheat! Reason: " + reason).c_str());
             break;
         case 1: {
             auto realOutfit = GetPlayerOutfit(pData);
@@ -1809,16 +1809,16 @@ void SMAC_OnCheatDetected(PlayerControl* pCtrl, std::string reason) {
         }
         case 2:
         {
-            String* newName = convert_to_string(name + " <#fff>has been kicked by <#ff006c>SickoMenu</color> <#9ef>Anticheat</color>! Reason: </color><#f00><b>" + reason + "</b></color><size=0>");
-            if (name.find(" by SickoMenu Anticheat! Reason: ") == std::string::npos)
+            String* newName = convert_to_string(name + " <#fff>has been kicked by <#ff006c>HyperMenu</color> <#9ef>Anticheat</color>! Reason: </color><#f00><b>" + reason + "</b></color><size=0>");
+            if (name.find(" by HyperMenu Anticheat! Reason: ") == std::string::npos)
                 GetPlayerOutfit(GetPlayerData(pCtrl))->fields.PlayerName = newName; // Set name for yourself as it doesn't show up fast enough for others
             InnerNetClient_KickPlayer((InnerNetClient*)(*Game::pAmongUsClient), pCtrl->fields._.OwnerId, false, NULL);
             break;
         }
         case 3:
         {
-            String* newName = convert_to_string(name + " <#fff>has been banned by <#ff006c>SickoMenu</color> <#9ef>Anticheat</color>! Reason: </color><#f00><b>" + reason + "</b></color><size=0>");
-            if (name.find(" by SickoMenu Anticheat! Reason: ") == std::string::npos)
+            String* newName = convert_to_string(name + " <#fff>has been banned by <#ff006c>HyperMenu</color> <#9ef>Anticheat</color>! Reason: </color><#f00><b>" + reason + "</b></color><size=0>");
+            if (name.find(" by HyperMenu Anticheat! Reason: ") == std::string::npos)
                 GetPlayerOutfit(GetPlayerData(pCtrl))->fields.PlayerName = newName; // Set name for yourself as it doesn't show up fast enough for others
             InnerNetClient_KickPlayer((InnerNetClient*)(*Game::pAmongUsClient), pCtrl->fields._.OwnerId, true, NULL);
             break;
@@ -1828,7 +1828,7 @@ void SMAC_OnCheatDetected(PlayerControl* pCtrl, std::string reason) {
     else {
         switch (State.SMAC_Punishment) {
         case 0:
-            LOG_INFO((name + " has been detected by SickoMenu Anticheat! Reason: " + reason).c_str());
+            LOG_INFO((name + " has been detected by HyperMenu Anticheat! Reason: " + reason).c_str());
             break;
         case 1: {
             auto realOutfit = GetPlayerOutfit(pData);

@@ -12,7 +12,7 @@ void Settings::Load() {
     this->SickoVersion = "v4.5.2";
 
     auto path = getModulePath(hModule);
-    auto configPath = path.parent_path() / "sicko-selected-config.json";
+    auto configPath = path.parent_path() / "hyper-selected-config.json";
 
     if (!std::filesystem::exists(configPath))
         return;
@@ -34,7 +34,7 @@ void Settings::Load() {
         //Log.Info("Unable to load sicko-selected-config.json");
     }
 
-    auto settingsPath = path.parent_path() / std::format("sicko-config/{}.json", this->selectedConfig);
+    auto settingsPath = path.parent_path() / std::format("hyper-config/{}.json", this->selectedConfig);
 
     if (!std::filesystem::exists(settingsPath))
         return;
@@ -203,7 +203,7 @@ void Settings::Load() {
         JSON_TRYGET("ShowLobbyInfo", this->ShowLobbyInfo);
         JSON_TRYGET("ChatAlwaysActive", this->ChatAlwaysActive);
         JSON_TRYGET("ReadGhostMessages", this->ReadGhostMessages);
-        JSON_TRYGET("ReadAndSendSickoChat", this->ReadAndSendSickoChat);
+        JSON_TRYGET("ReadAndSendHyperChat", this->ReadAndSendSickoChat);
         JSON_TRYGET("CustomName", this->CustomName);
         JSON_TRYGET("RgbName", this->RgbName);
         JSON_TRYGET("RgbMethod", this->RgbMethod);
@@ -325,7 +325,7 @@ void Settings::Load() {
         JSON_TRYGET("SMAC_PunishBlacklist", this->SMAC_PunishBlacklist);
         JSON_TRYGET("SMAC_IgnoreWhitelist", this->SMAC_IgnoreWhitelist);
         JSON_TRYGET("SMAC_CheckAUM", this->SMAC_CheckAUM);
-        JSON_TRYGET("SMAC_CheckSicko", this->SMAC_CheckSicko);
+        JSON_TRYGET("SMAC_CheckHyper", this->SMAC_CheckSicko);
         JSON_TRYGET("SMAC_CheckBadNames", this->SMAC_CheckBadNames);
         JSON_TRYGET("SMAC_CheckColor", this->SMAC_CheckColor);
         JSON_TRYGET("SMAC_CheckCosmetics", this->SMAC_CheckCosmetics);
@@ -508,7 +508,7 @@ void Settings::Load() {
         }
     }
     catch (...) {
-        Log.Info("Unable to load " + std::format("sicko-config/{}.json", this->selectedConfig));
+        Log.Info("Unable to load " + std::format("hyper-config/{}.json", this->selectedConfig));
     }
 
     //Do not do any IL2CPP stuff here!  The constructors of most classes have not run yet!
@@ -516,9 +516,9 @@ void Settings::Load() {
 
 void Settings::SaveConfig() {
     auto path = getModulePath(hModule);
-    std::filesystem::create_directory(path.parent_path() / "sicko-config");
+    std::filesystem::create_directory(path.parent_path() / "hyper-config");
 
-    auto configPath = path.parent_path() / "sicko-selected-config.json";
+    auto configPath = path.parent_path() / "hyper-selected-config.json";
 
     if (this->selectedConfig != "") {
         try {
@@ -537,9 +537,9 @@ void Settings::SaveConfig() {
 
 void Settings::Save() {
     auto path = getModulePath(hModule);
-    std::filesystem::create_directory(path.parent_path() / "sicko-config");
+    std::filesystem::create_directory(path.parent_path() / "hyper-config");
 
-    auto configPath = path.parent_path() / "sicko-selected-config.json";
+    auto configPath = path.parent_path() / "hyper-selected-config.json";
 
     if (this->selectedConfig != "") {
         try {
@@ -554,7 +554,7 @@ void Settings::Save() {
             //Log.Info("Unable to save sicko-selected-config.json");
         }
         auto settingsPath = path.parent_path() /
-            std::format("sicko-config/{}.json", GetAllConfigs().size() != 0 ? this->selectedConfig : "default");
+            std::format("hyper-config/{}.json", GetAllConfigs().size() != 0 ? this->selectedConfig : "default");
 
         try {
             nlohmann::ordered_json j = nlohmann::ordered_json{
@@ -712,7 +712,7 @@ void Settings::Save() {
                 { "ShowLobbyInfo", this->ShowLobbyInfo },
                 { "ChatAlwaysActive", this->ChatAlwaysActive },
                 { "ReadGhostMessages", this->ReadGhostMessages },
-                { "ReadAndSendSickoChat", this->ReadAndSendSickoChat },
+                { "ReadAndSendHyperChat", this->ReadAndSendSickoChat },
                 { "CustomName", this->CustomName },
                 { "RgbName", this->RgbName },
                 { "RgbMethod", this->RgbMethod },
@@ -835,7 +835,7 @@ void Settings::Save() {
                 { "SMAC_PunishBlacklist", this->SMAC_PunishBlacklist },
                 { "SMAC_IgnoreWhitelist", this->SMAC_IgnoreWhitelist },
                 { "SMAC_CheckAUM", this->SMAC_CheckAUM },
-                { "SMAC_CheckSicko", this->SMAC_CheckSicko },
+                { "SMAC_CheckHyper", this->SMAC_CheckSicko },
                 { "SMAC_CheckBadNames", this->SMAC_CheckBadNames },
                 { "SMAC_CheckColor", this->SMAC_CheckColor },
                 { "SMAC_CheckCosmetics", this->SMAC_CheckCosmetics },
@@ -1015,7 +1015,7 @@ void Settings::Save() {
             outSettings << std::setw(4) << j << std::endl;
         }
         catch (...) {
-            Log.Info("Unable to save " + std::format("sicko-config/{}.json", this->selectedConfig));
+            Log.Info("Unable to save " + std::format("hyper-config/{}.json", this->selectedConfig));
         }
 
         /*std::filesystem::path friendsPath = path.parent_path() / "friends.json";
@@ -1038,7 +1038,7 @@ void Settings::Save() {
 void Settings::Delete() {
     auto path = getModulePath(hModule);
 
-    auto configPath = path.parent_path() / std::format("sicko-config/{}.json", this->selectedConfig);
+    auto configPath = path.parent_path() / std::format("hyper-config/{}.json", this->selectedConfig);
 
     std::filesystem::remove(configPath);
 }

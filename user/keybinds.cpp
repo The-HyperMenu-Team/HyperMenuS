@@ -206,7 +206,7 @@ void KeyBinds::to_json(nlohmann::ordered_json& j, KeyBinds::Config value)
         {"Reset_Appearance", value.Reset_Appearance},
         {"Randomize_Appearance", value.Randomize_Appearance},
         {"Complete_Tasks", value.Complete_Tasks},
-        {"Toggle_Sicko", value.Toggle_Sicko},
+        {"Toggle_Hyper", value.Toggle_Sicko},
         {"Cancel_Start", value.Cancel_Start},
     };
 }
@@ -230,5 +230,5 @@ void KeyBinds::from_json(const nlohmann::ordered_json& j, KeyBinds::Config& valu
     j.at("Reset_Appearance").get_to(value.Reset_Appearance);
     j.at("Randomize_Appearance").get_to(value.Randomize_Appearance);
     j.at("Complete_Tasks").get_to(value.Complete_Tasks);
-    j.at("Toggle_Sicko").get_to(value.Toggle_Sicko);
+    j.at("Toggle_Hyper").get_to(value.Toggle_Sicko);
 }

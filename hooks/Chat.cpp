@@ -302,7 +302,7 @@ void dChatBubble_SetName(ChatBubble* __this, String* playerName, bool isDead, bo
 						playerName = convert_to_string(dot + " " + convert_from_string(playerName));
 				}
 				if (State.IsProcessingSickoChat) {
-					std::string prefix = "<size=90%><#fb0>[<#ff006c>SickoChat</color>]</color> ";
+					std::string prefix = "<size=90%><#fb0>[<#ff006c>HyperChat</color>]</color> ";
 					playerName = convert_to_string(prefix + convert_from_string(playerName) + "</size>");
 				}
 			}

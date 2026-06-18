@@ -235,7 +235,7 @@ void dPlayerControl_FixedUpdate(PlayerControl* __this, MethodInfo* method) {
                         break;
                     }
                 }
-                std::string localPlayerMod = State.modUsers.find((*Game::pLocalPlayer)->fields.PlayerId) == State.modUsers.end() ? "<#ff006c>SickoMenu</color>" : State.modUsers.at((*Game::pLocalPlayer)->fields.PlayerId);
+                std::string localPlayerMod = State.modUsers.find((*Game::pLocalPlayer)->fields.PlayerId) == State.modUsers.end() ? "<#ff006c>HyperMenu</color>" : State.modUsers.at((*Game::pLocalPlayer)->fields.PlayerId);
                 if (State.ModDetection) {
                     switch (State.BroadcastedMod) {
                     case 1:
@@ -1497,7 +1497,7 @@ void dNetworkedPlayerInfo_Deserialize(NetworkedPlayerInfo* __this, MessageReader
             }
             case 2:
             {
-                String* newName = convert_to_string(name + " has been kicked by <#ff006c>SickoMenu</color> <#9ef>Anticheat</color>! Reason: Blacklisted<size=0>");
+                String* newName = convert_to_string(name + " has been kicked by <#ff006c>HyperMenu</color> <#9ef>Anticheat</color>! Reason: Blacklisted<size=0>");
                 if (IsHost()) {
                     PlayerControl_CmdCheckName(GetPlayerControlById(id), newName, NULL);
                     InnerNetClient_KickPlayer((InnerNetClient*)(*Game::pAmongUsClient), GetPlayerControlById(id)->fields._.OwnerId, false, NULL);
@@ -1506,7 +1506,7 @@ void dNetworkedPlayerInfo_Deserialize(NetworkedPlayerInfo* __this, MessageReader
             }
             case 3:
             {
-                String* newName = convert_to_string(name + " has been banned by <#ff006c>SickoMenu</color> <#9ef>Anticheat</color>! Reason: Blacklisted<size=0>");
+                String* newName = convert_to_string(name + " has been banned by <#ff006c>HyperMenu</color> <#9ef>Anticheat</color>! Reason: Blacklisted<size=0>");
                 if (IsHost()) {
                     PlayerControl_CmdCheckName(GetPlayerControlById(id), newName, NULL);
                     InnerNetClient_KickPlayer((InnerNetClient*)(*Game::pAmongUsClient), GetPlayerControlById(id)->fields._.OwnerId, true, NULL);

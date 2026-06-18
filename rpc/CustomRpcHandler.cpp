@@ -12,9 +12,9 @@ void HandleRpc(PlayerControl* player, uint8_t callId, MessageReader* reader) {
 	{
 		uint8_t playerId = player->fields.PlayerId; //true SickoMenu detection
 		if (State.modUsers.find(playerId) == State.modUsers.end() && MessageReader_get_BytesRemaining(reader, NULL) == 0) {
-			State.modUsers.insert({ playerId, "<#ff006c>SickoMenu</color>" });
-			STREAM_DEBUG("RPC Received for another SickoMenu user from " << ToString((Game::PlayerId)playerId));
-			if (State.SMAC_CheckSicko) SMAC_OnCheatDetected(player, "SickoMenu User");
+			State.modUsers.insert({ playerId, "<#ff006c>HyperMenu</color>" });
+			STREAM_DEBUG("RPC Received for another HyperMenu user from " << ToString((Game::PlayerId)playerId));
+			if (State.SMAC_CheckSicko) SMAC_OnCheatDetected(player, "HyperMenu User");
 		}
 	}
 	break;
@@ -106,7 +106,7 @@ void HandleRpc(PlayerControl* player, uint8_t callId, MessageReader* reader) {
 					State.Rpc101OverloadTimestamps[playerId] = now;
 
 					std::string name = RemoveHtmlTags(convert_from_string(GetPlayerOutfit(GetPlayerData(player))->fields.PlayerName));
-					std::string actionMessage = std::format("<b>Player <#FFF>\"{}\"</color> has exceeded the rate-limit of SickoChat!</b>", name);
+					std::string actionMessage = std::format("<b>Player <#FFF>\"{}\"</color> has exceeded the rate-limit of HyperChat!</b>", name);
 
 					auto notifier = (NotificationPopper*)(Game::HudManager.GetInstance()->fields.Notifier);
 					if (notifier != NULL) {
@@ -147,7 +147,7 @@ void HandleRpc(PlayerControl* player, uint8_t callId, MessageReader* reader) {
 				local->fields.IsDead = false;
 			}
 
-			STREAM_DEBUG("SickoChat RPC from " << playerName << " (RPC sent by " << ToString((Game::PlayerId)player->fields.PlayerId) << ")");
+			STREAM_DEBUG("HyperChat RPC from " << playerName << " (RPC sent by " << ToString((Game::PlayerId)player->fields.PlayerId) << ")");
 		}
 	}
 	break;
